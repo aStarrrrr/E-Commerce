@@ -1,39 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update Order Status</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Dashboard - Update Genre</title>
   <link rel="icon" href="images/logo.jpg" type="image/icon type">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
   <style>
     body {
       background-color: #f8f9fa;
       padding-top: 55px;
     }
 
-    * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scrollbar-width: none; /* For Firefox */
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
     .navbar {
-      background-color: #343a40;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 1000;
-    }
-
-    .backbtn {
-      width: 100px;
+      background-color: #343a40;
     }
 
     .navbar-brand,
@@ -41,20 +27,66 @@ html {
       color: #fff !important;
     }
 
-    .container {
-      margin-top: 80px; /* Space for fixed navbar */
+    .sidebar {
+      height: 100vh;
+      background-color: #212529;
+      padding-top: 20px;
     }
 
-    .form-container {
-      width: 50%;
-      margin: 0 auto;
+    .sidebar a {
+      color: #adb5bd;
+      padding: 10px 20px;
+      display: block;
+      text-decoration: none;
+      transition: background-color 0.3s;
     }
 
-    .text-info {
-      margin-top: 20px;
+    .sidebar a:hover {
+     -color: #343a40;
+      color: #fff;
     }
 
-    /* From Uiverse.io by csemszepp */ 
+    .content {
+      padding: 23px;
+    }
+
+    .card {
+      margin-bottom: 30px;
+    }
+
+    .card-header {
+      background-color: #343a40;
+      color: #fff;
+    }
+
+    .card-body {
+      font-size: 1.1rem;
+    }
+
+    .table th {
+      background-color: #f1f3f5;
+      white-space: nowrap; /* Prevent text wrapping */
+      max-width: 200px; /* Limit max width */
+      overflow: hidden; /* Hide overflowing content */
+      text-overflow: ellipsis; /* Show ellipsis for overflowing content */
+    }
+
+    .table {
+      table-layout: auto; /* Allow columns to adjust based on content */
+      width: 100%; /* Ensure table spans full width */
+    }
+
+    @media (max-width: 991.98px) {
+      .sidebar {
+        display: none;
+      }
+
+      .content {
+        margin-left: 0;
+      }
+    }
+
+/* From Uiverse.io by csemszepp */ 
 .container1 {
   width: 100%;
   height: 100%;
@@ -83,13 +115,16 @@ html {
   background-size: calc(1.732 * var(--s)) var(--s);
 }
 
+
   </style>
+
+  
 </head>
 <body class="container1">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">BookMart</a>
+      <a class="navbar-brand" href="#">BookBazaar Admin</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -109,40 +144,35 @@ html {
         <!-- Logout Button -->
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a href="/index.html" class="btn btn-outline-light">Logout</a>
+            <a href="/logout" class="btn btn-outline-light">Logout</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Content -->
-  <div class="container mt-5 bg-white p-4 rounded shadow">
-    <h2>Update Order Status</h2>
-    <a class="backbtn my-2 btn btn-primary " href="/allorders.html">Back</a>
-
-    <form action="/UpdateOrderStatus" method="POST" class="form-container pt-2">
-      <!-- Hidden OrderId Field -->
-      <input type="hidden" name="OrderId" value="">
-
-      <div class="mb-2">
-        <label for="OrderStatusId">Order Status</label>
-        <select class="form-control mt-2" name="OrderStatusId" id="OrderStatusId">
-          <option value="">Select order status</option>
-          <!-- Dynamically populated options -->
-          <option value="1">Pending</option>
-          <option value="2">Shipped</option>
-          <option value="3">Delivered</option>
-          <option value="4">Cancelled</option>
-        </select>
-        <span class="text-danger" id="OrderStatusIdError"></span>
-      </div>
-
-      <button type="submit" class="backbtn btn btn-primary mt-2">Update</button>
-    </form>
+  <!-- Sidebar and Content -->
+  <div class="bg-light rounded m-5">
+    <!-- Main Content -->
+    <div class="content">
+      <div >
+        <h2 class="mb-4">Update Genre</h2>
+        <a href="/genre.html" class="btn btn-primary mb-3 w-25">Back</a>
+        <form action="/genre/updategenre" method="post">
+          <input type="hidden" name="Id" value="<!-- Add Genre Id here -->" />
+          <div class="mb-3">
+            <label for="genreName" class="form-label"> Genre</label>
+            <input type="text" id="genreName" name="GenreName" class="form-control" placeholder="Add Genre here" />
+            <span class="text-danger"> <!-- Validation message here --> </span>
+          </div>
+          <div class="mb-3">
+            <button type="submit" class="btn btn-info mb-3">Update</button>
+          </div>
+        </form>
+    </div>
   </div>
 
-
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
